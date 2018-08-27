@@ -1,0 +1,97 @@
+.colorsTable {
+    width: 100%;
+    margin-top: 3%;
+}
+
+.colorsTableHead {
+    background-color: #B1DDDD;
+    color: black;
+}
+
+.subHeader {
+    font-size: 20px;
+    padding-top: 1%;
+}
+
+.title {
+    text-align: center;
+    text-decoration: underline;
+}
+
+.search {
+    text-align: right;
+}
+
+.btn-info {
+    margin-top: -0.25%;
+    font-size: 20px;
+}
+
+.closeBtn {
+    position: absolute;
+    top: 0;
+    right: 0;
+    font-size: 20px;
+    padding: 1%;
+}
+
+table, th, td {
+    border: 2px solid black;
+    text-align: center;
+    font-size: 25px;
+}
+
+#category {
+    display: block;
+}
+
+.centerSubmit {
+    align-content: center;
+    text-align: center;
+}
+
+.modal {
+    text-align: center;
+  }
+
+.modal-content {
+    border: solid 3px;
+}
+
+.modal-header {
+    background-color: #5BC0DE;
+    color: white;
+}
+  
+  @media screen and (min-width: 768px) { 
+    .modal:before {
+      display: inline-block;
+      vertical-align: middle;
+      content: " ";
+      height: 100%;
+    }
+  }
+  
+  .modal-dialog {
+    display: inline-block;
+    text-align: left;
+    vertical-align: middle;
+  }
+
+th, td {
+    padding: 15px;
+}
+
+#newColorHeader {
+    text-align: center;
+}
+
+.edtButton {
+    margin-left: 10px;
+    font-size: 19px;
+}
+
+.dltButton {
+    font-size: 20px;
+    display: inline-block;
+}

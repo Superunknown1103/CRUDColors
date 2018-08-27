@@ -1,0 +1,134 @@
+<html>
+    
+        <head>
+                <meta charset="utf-8">
+                <script
+                src="https://code.jquery.com/jquery-3.2.1.min.js"
+                integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+                crossorigin="anonymous"></script>
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+                <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+                <link rel="stylesheet" href="css/app.css">
+                <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+                <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+                <script src="https://www.gstatic.com/firebasejs/live/3.0/firebase.js"></script>
+                <script src="js/logic.js"></script>
+                
+                <link href="https://fonts.googleapis.com/css?family=Nunito+Sans" rel="stylesheet">
+        </head>
+    
+        <body class="indexBody">
+             <div class="container">
+                 <div class="row">
+                     <h1 class="title">Colors</h1>
+                     <div class="subHeader">
+                         <div class="col-xs-6 search">
+                         Find: <input id="searchBox"> </input>
+                         <button type="button" class="btn btn-info" onclick="search()"><i class="fas fa-search"></i></button>
+                         <button type="button" class="btn btn-success clear">Clear</button>
+                        </div>
+                        <div class="col-xs-6">
+                         <button type="button" class="btn btn-info" data-toggle="modal" data-target="#colorModal">Add New Color</button>
+                         </div>
+                        </div>
+                 </div>
+                 <div class="row">
+                     <table class="colorsTable">
+                         <tr class="colorsTableHead">
+                             <th>Color</th>
+                             <th>HEX</th>
+                             <th>RGB</th>
+                             <th>Category</th>
+                             <th>Actions</th>
+                         </tr>
+                     </table>
+                    </div>
+                     </div>
+
+
+                     <!-- Modal -->
+<div class="modal fade" id="colorModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2 class="modal-title" id="newColorHeader">Add New Color</h2>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span class="closeBtn" aria-hidden="true">Close</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <form>
+                <div class="form-group">
+                  <label for="colorName">Color Name</label>
+                  <input class="form-control" id="colorName" aria-describedby="colorName" placeholder="Color Name">
+                </div>
+                <div class="form-group">
+                  <label for="hex-code">Hex-Code</label>
+                  <input class="form-control" id="hex-code" placeholder="Hex-Code">
+                </div>
+                <div class="form-group">
+                    <label for="hex-code">RGB</label>
+                    <input class="form-control" id="RGB" placeholder="RGB">
+                  </div>
+                  <div class="form-group">
+                        <label for="hex-code">Category</label>
+                <select id="category">
+                    <option value="primary">Primary</option>
+                    <option value="secondary">Secondary</option>
+                    <option value="tertiary">Tertiary</option>
+                    <option value="n/a">N/A</option>
+                  </select>
+                </div>
+                <div class="centerSubmit">
+                <button type="submit" id="submitColor" class="btn btn-info">Submit</button>
+            </div>
+              </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="updateColorModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h2 class="modal-title" id="newColorHeader">Update Color</h2>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span class="closeBtn" aria-hidden="true">Close</span>
+              </button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                      <label for="colorName">Color Name</label>
+                      <input class="form-control" id="updateColorName" aria-describedby="colorName" placeholder="Color Name">
+                    </div>
+                    <div class="form-group">
+                      <label for="hex-code">Hex-Code</label>
+                      <input class="form-control" id="updateHex" placeholder="Hex-Code">
+                    </div>
+                    <div class="form-group">
+                        <label for="hex-code">RGB</label>
+                        <input class="form-control" id="updateRGB" placeholder="RGB">
+                      </div>
+                      <div class="form-group">
+                            <label for="hex-code">Category</label>
+                    <select id="updateCategory">
+                        <option value="primary">Primary</option>
+                        <option value="secondary">Secondary</option>
+                        <option value="tertiary">Tertiary</option>
+                        <option value="n/a">N/A</option>
+                      </select>
+                    </div>
+                    <div class="centerSubmit">
+                    <button type="submit" id="updateColor" class="btn btn-info">Submit</button>
+                </div>
+                  </form>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+        </body>
+    </html>
