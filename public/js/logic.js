@@ -54,8 +54,7 @@ $('.clear').on('click', function(){
     let category = $('#category').val();
 
     var duplicate = checkForExistingColors(colorName);
-    debugger;
-    if (duplicate == false){
+    if (!duplicate){
     firebase.database().ref('colors/').push({
       colorName: colorName,
       hexCode: hexCode,
@@ -145,17 +144,15 @@ function snapshotToArray(snapshot){
 
 function checkForExistingColors(name){
     var value = this.value;
-    var duplicate = searchGrid();
-    function searchGrid(){
+    var match = false;
     $("table").find("tr").each(function(index) {
         if (!index) return;
         var id = $(this).find("td").first().text();
         if (id == name){
-          return true;
+         match = true;
         }
     })
-  }
-  if (duplicate === true) {
+  if (match) {
     return true;
   } else {
     return false;
