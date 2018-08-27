@@ -61,7 +61,7 @@ $('.clear').on('click', function(){
       rgb: rgb,
       category: category
     });
-    $('#colorModal').hide();
+    $('#colorModal').toggle();
     $('.modal-backdrop').remove();
     } else {
         alert('There is already a color with this name.');
@@ -77,7 +77,7 @@ $('.clear').on('click', function(){
 
     // UPDATE OPERATION
     function editRow(key){
-      $('#updateColorModal').modal();
+      $('#updateColorModal').modal('show');
       firebase.database().ref('/colors/' + key).once('value').then(function(snapshot) {
       $('#updateColorName').val(snapshot.val().colorName);
       $('#updateHex').val(snapshot.val().hexCode);
@@ -101,7 +101,7 @@ $('.clear').on('click', function(){
               category: category
             });
 
-            $('#updateColorModal').hide();
+            $('#updateColorModal').modal('hide');
             $('.modal-backdrop').remove();
           });
         }
