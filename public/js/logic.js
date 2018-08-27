@@ -20,7 +20,6 @@ firebase.database().ref('/colors').on('value', function(snapshot) {
   var table = $('.colorsTable');
   // prevent duplication of table rows
   $(".colorsTable").find("tr:gt(0)").remove();
-
   var readData = snapshotToArray(snapshot);
   for (let i=0;  i < readData.length; i++) {
     let key = readData[i].key;
@@ -36,6 +35,7 @@ firebase.database().ref('/colors').on('value', function(snapshot) {
 });
 };
 
+// Read All from Database when page first loads
 readAll();
 
 // Clear Searches
@@ -48,7 +48,7 @@ $('.clear').on('click', function(){
   $('#submitColor').on('click', function(){
     event.preventDefault();
 
-    let colorName = $('#colorName').val();
+    let colorName = $('#colorName').val().toLowerCase();
     let hexCode = $('#hex-code').val();
     let rgb = $('#RGB').val();
     let category = $('#category').val();
@@ -88,7 +88,8 @@ $('.clear').on('click', function(){
       $('#updateColor').on('click', function() {
         event.preventDefault();
             
-            let colorName = $('#updateColorName').val();
+        // forcing lowercase so that search functionality will be case-sensitive
+            let colorName = $('#updateColorName').val().toLowerCase();
             let hexCode = $('#updateHex').val();
             let rgb = $('#updateRGB').val();
             let category = $('#updateCategory').val();
@@ -107,12 +108,12 @@ $('.clear').on('click', function(){
 
   // SEARCH OPERATION
   function search(){
-  var parameter = $('#searchBox').val();
-  firebase.database().ref('colors').orderByChild('colorName').equalTo(parameter).on("value", function(snapshot) {
+  var parameter = $('#searchBox').val().toLowerCase();
+  firebase.database().ref('colors').orderByChild('colorName').startAt(parameter).endAt(parameter+"\uf8ff").on("value", function(snapshot) {
     console.log(snapshot.val());
+    var table = $('.colorsTable');
+    table.find("tr:gt(0)").remove();
     snapshot.forEach(function(data) {
-      var table = $('.colorsTable');
-      table.find("tr:gt(0)").remove();
       var readData = snapshotToArray(snapshot);
       for (let i=0;  i < readData.length; i++) {
         let key = readData[i].key;
